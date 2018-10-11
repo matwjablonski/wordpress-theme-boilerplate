@@ -20,7 +20,7 @@ settings.paths = {
     dist: `${__dirname}/public/wp-content/themes/${settings.theme.slug}`,
 };
 
-const prepareContent = (settings) => {
+const prepareStyleCSSContent = (settings) => {
     const {name, themeURI, description, author, authorURI, version, textDomain} = settings;
     const f = `/*\nTheme Name: ${name}\nTheme URI: ${themeURI}\nDescription: ${description}\nAuthor: ${author}\nAuthor URI: ${authorURI}\nVersion: ${version}\nText Domain: ${textDomain}\n*/`;
 
@@ -38,7 +38,7 @@ const plugins = [
     new CreateFileWebpack({
         path: `${settings.paths.dist}`,
         fileName: 'style.css',
-        content: prepareContent(settings.theme),
+        content: prepareStyleCSSContent(settings.theme),
     }),
     new ReplaceInFileWebpackPlugin([
         {
