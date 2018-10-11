@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CreateFileWebpack = require('create-file-webpack');
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 
 const settings = {};
 
@@ -38,7 +39,23 @@ const plugins = [
         path: `${settings.paths.dist}`,
         fileName: 'style.css',
         content: prepareContent(settings.theme),
-    })
+    }),
+    new ReplaceInFileWebpackPlugin([
+        {
+            dir: `${settings.paths.dist}/`,
+            test: /\.php$/,
+            rules: [
+                {
+                    search: '@@textDomain',
+                    replace: settings.theme.textDomain
+                },
+                {
+                    search: '@@version',
+                    replace: settings.theme.version
+                }
+            ]
+        }
+    ]),
 ]
 
 module.exports = (env) => ({

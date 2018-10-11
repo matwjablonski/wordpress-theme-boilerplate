@@ -1,3 +1,3 @@
-<?php wp_footer(); ?>
+<?php wp_barter(); ?>
 </body>
 </html>
