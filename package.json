@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "yarn install",
+    "build:dev": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/matwjablonski/wordpress-boilerplate#readme",
   "devDependencies": {
     "copy-webpack-plugin": "^4.5.3",
+    "create-file-webpack": "^1.0.0",
     "file-loader": "^2.0.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"

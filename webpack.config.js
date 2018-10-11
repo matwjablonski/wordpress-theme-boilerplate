@@ -1,9 +1,17 @@
-const settings = {};
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CreateFileWebpack = require('create-file-webpack');
+
+const settings = {};
 
 settings.theme = {
     slug: 'woodpecker-theme',
     name: 'Woodpecker Theme',
+    themeURI: '',
+    description: '',
+    author: 'Mateusz Jabłoński',
+    authorURI: 'mateuszjablonski.com',
+    version: '0.0.1',
+    textDomain: 'wood',
 };
 
 settings.paths = {
@@ -11,14 +19,26 @@ settings.paths = {
     dist: `${__dirname}/public/wp-content/themes/${settings.theme.slug}`,
 };
 
+const prepareContent = (settings) => {
+    const {name, themeURI, description, author, authorURI, version, textDomain} = settings;
+    const f = `/*\nTheme Name: ${name}\nTheme URI: ${themeURI}\nDescription: ${description}\nAuthor: ${author}\nAuthor URI: ${authorURI}\nVersion: ${version}\nText Domain: ${textDomain}\n*/`;
+
+    return f;
+};
+
 const plugins = [
     new CopyWebpackPlugin([
         {
             from: `${settings.paths.src}`,
             to: `${settings.paths.dist}/`,
-            ignore: [ '*.js' ]
+            ignore: [ '*.js', '*.ts' ]
         }
-    ])
+    ]),
+    new CreateFileWebpack({
+        path: `${settings.paths.dist}`,
+        fileName: 'style.css',
+        content: prepareContent(settings.theme),
+    })
 ]
 
 module.exports = (env) => ({
@@ -29,15 +49,4 @@ module.exports = (env) => ({
     },
     mode: 'development',
     plugins
-    // rules: [
-    //     {
-    //         test: /\.(php|pot|po|mo)$/,
-    //         use: [
-    //             {
-    //                 loader: 'file-loader',
-    //                 options: {},
-    //             }
-    //         ]
-    //     }
-    // ]
 });
