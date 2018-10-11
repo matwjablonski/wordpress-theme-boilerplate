@@ -1,0 +1,25 @@
+{
+  "name": "wordpress-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matwjablonski/wordpress-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matwjablonski/wordpress-boilerplate/issues"
+  },
+  "homepage": "https://github.com/matwjablonski/wordpress-boilerplate#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.3",
+    "file-loader": "^2.0.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
