@@ -6,4 +6,4 @@ wp_enqueue_style(
     array(),
     null,
     'all'
-);
+);  
