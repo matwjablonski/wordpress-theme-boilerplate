@@ -12,4 +12,4 @@
 <?php endwhile; ?>
 <?php else: ?>
 <?php endif; ?>
-<?php get_barter(); ?>
+<?php get_footer(); ?>

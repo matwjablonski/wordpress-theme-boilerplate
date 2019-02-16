@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "yarn install && npm-run-all install:*",
-    "build:dev": "./node_modules/.bin/webpack",
-    "install:wordpress": "git clone https://github.com/WordPress/WordPress.git wordpress && cp -r wordpress/* public && rm -rf wordpress"
+    "start": "yarn build --watch",
+    "build": "./node_modules/.bin/webpack",
+    "generate:pot": "wp-pot --domain 'leo' --src 'src/*.php' --dest-file 'src/translations.pot'",
+    "watch:pot": "npm run generate:pot && onchange \"src/**/*.php\" -- npm run generate:pot",
+    "watch:files": "onchange \"public/**/*\" -- yarn docker:cp",
+    "docker:cp": "docker cp public/wp-content wordpress:/var/www/html/",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down --volumes"
   },
   "repository": {
     "type": "git",
@@ -27,5 +31,8 @@
     "replace-in-file-webpack-plugin": "^1.0.6",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "onchange": "^5.2.0"
   }
 }
