@@ -9,7 +9,7 @@
     "deploy": "yarn setup -- --deploy",
     "wp-cli:download": "yarn clean && node config/wp-cli/core.js",
     "wp-cli:plugins": "node config/wp-cli/plugins.js",
-    "clean": "rm -rf public/ wp-cli/",
+    "clean": "rm -rf public/ wp-cli/ zip/",
     "build": "./node_modules/.bin/webpack",
     "generate:pot": "wp-pot --domain 'wood' --src 'src/*.php' --dest-file 'src/translations.pot'",
     "watch:pot": "npm run generate:pot && onchange \"src/**/*.php\" -- npm run generate:pot"
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "onchange": "^5.2.0",
+    "unzip": "^0.1.11",
     "webpack-dev-server": "^3.10.1"
   }
 }

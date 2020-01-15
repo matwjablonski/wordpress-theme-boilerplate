@@ -1,6 +1,7 @@
 node_modules/
 public/
 wordpress/
+zip/
 
 .env
 wp-cli/wp-cli.phar
