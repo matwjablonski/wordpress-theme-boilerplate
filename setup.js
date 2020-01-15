@@ -50,9 +50,9 @@ init()
   .then(() => {
     core.db(URL, TITLE, ADMIN_USER, ADMIN_EMAIL);
   })
-  // .then(() => {
-  //   plugins.install();
-  // })
+  .then(() => {
+    plugins.install();
+  })
   .then(() => {
     theme.init(THEME_NAME, settings.theme);
   });
