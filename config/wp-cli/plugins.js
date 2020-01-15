@@ -1,6 +1,6 @@
 const shelljs = require('shelljs/shell');
 const wpCli = require('./wp-cli');
-const unzip = require('unzip/unzip');
+const unzip = require('unzip-stream');
 const fs = require('fs');
 
 const requiredPlugins = [

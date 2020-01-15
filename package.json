@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "onchange": "^5.2.0",
-    "unzip": "^0.1.11",
+    "unzip-stream": "^0.3.0",
     "webpack-dev-server": "^3.10.1"
   }
 }
