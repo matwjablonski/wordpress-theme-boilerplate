@@ -4,17 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn build --watch",
+    "start": "webpack-dev-server --watch",
     "wp-cli:download": "yarn clean && node config/wp-cli/core.js",
     "wp-cli:plugins": "node config/wp-cli/plugins.js",
     "clean": "rm -rf public/ wp-cli/",
     "build": "./node_modules/.bin/webpack",
     "generate:pot": "wp-pot --domain 'wood' --src 'src/*.php' --dest-file 'src/translations.pot'",
-    "watch:pot": "npm run generate:pot && onchange \"src/**/*.php\" -- npm run generate:pot",
-    "watch:files": "onchange \"public/**/*\" -- yarn docker:cp",
-    "docker:cp": "docker cp public/wp-content wordpress:/var/www/html/",
-    "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down --volumes"
+    "watch:pot": "npm run generate:pot && onchange \"src/**/*.php\" -- npm run generate:pot"
   },
   "repository": {
     "type": "git",
@@ -38,6 +34,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "onchange": "^5.2.0"
+    "onchange": "^5.2.0",
+    "webpack-dev-server": "^3.10.1"
   }
 }

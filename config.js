@@ -7,11 +7,29 @@ const shelljs = require('shelljs/shell');
 dotenv.config();
 
 const {
-    DB_USER,
-    DB_NAME,
-    DB_PWD,
-    DB_HOST
+  DB_USER,
+  DB_NAME,
+  DB_PWD,
+  DB_HOST,
+  THEME_NAME,
+  URL,
+  TITLE,
+  ADMIN_USER,
+  ADMIN_EMAIL
 } = process.env;
+
+const settings = {};
+
+settings.theme = {
+  slug: THEME_NAME,
+  name: THEME_NAME,
+  themeURI: '',
+  description: '',
+  author: 'Mateusz Jabłoński',
+  authorURI: 'mateuszjablonski.com',
+  version: '0.0.1',
+  textDomain: 'wood',
+};
 
 const init = () => new Promise((resolve, reject) => {
     resolve(
@@ -30,8 +48,11 @@ init()
     core.config(DB_NAME, DB_USER, DB_PWD, DB_HOST);
   })
   .then(() => {
-    plugins.install();
+    core.db(URL, TITLE, ADMIN_USER, ADMIN_EMAIL);
   })
+  // .then(() => {
+  //   plugins.install();
+  // })
   .then(() => {
-    theme.init();
+    theme.init(THEME_NAME, settings.theme);
   });
