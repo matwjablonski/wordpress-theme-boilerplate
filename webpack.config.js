@@ -32,7 +32,7 @@ const plugins = [
         {
             from: `${settings.paths.src}`,
             to: `${settings.paths.dist}/`,
-            ignore: [ '*.js', '*.ts' ]
+            ignore: ['*.js', '*.ts']
         }
     ]),
     new CreateFileWebpack({
@@ -56,7 +56,7 @@ const plugins = [
             ]
         }
     ]),
-]
+];
 
 module.exports = (env) => ({
     entry: `${settings.paths.src}/assets/js/app.js`,

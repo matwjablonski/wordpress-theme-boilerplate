@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "yarn build --watch",
+    "wp-cli:download": "yarn clean && node config/wp-cli/core.js",
+    "wp-cli:plugins": "node config/wp-cli/plugins.js",
+    "clean": "rm -rf public/ wp-cli/",
     "build": "./node_modules/.bin/webpack",
-    "generate:pot": "wp-pot --domain 'leo' --src 'src/*.php' --dest-file 'src/translations.pot'",
+    "generate:pot": "wp-pot --domain 'wood' --src 'src/*.php' --dest-file 'src/translations.pot'",
     "watch:pot": "npm run generate:pot && onchange \"src/**/*.php\" -- npm run generate:pot",
     "watch:files": "onchange \"public/**/*\" -- yarn docker:cp",
     "docker:cp": "docker cp public/wp-content wordpress:/var/www/html/",
@@ -26,9 +29,11 @@
   "devDependencies": {
     "copy-webpack-plugin": "^4.5.3",
     "create-file-webpack": "^1.0.0",
+    "dotenv": "^8.2.0",
     "file-loader": "^2.0.0",
     "npm-run-all": "^4.1.3",
     "replace-in-file-webpack-plugin": "^1.0.6",
+    "shelljs": "^0.8.3",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
