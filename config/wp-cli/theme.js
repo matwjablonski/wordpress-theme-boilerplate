@@ -9,7 +9,7 @@ const prepareStyleCSSContent = (settings) => {
   return f;
 };
 
-const init = (themeName = 'basic', theme) => {
+const init = (themeName = 'basic', theme, activate = true) => {
   shelljs.exec(`mkdir -p public/wp-content/themes/${themeName}-theme`);
   shelljs.exec(`cp -R config/boilerplate/* public/wp-content/themes/${themeName}-theme`);
   fs.writeFile(`public/wp-content/themes/${themeName}-theme/style.css`, prepareStyleCSSContent(theme), (err) => {
@@ -17,7 +17,9 @@ const init = (themeName = 'basic', theme) => {
       console.error(err);
       return;
     }
-    shelljs.exec(`${wpCli.baseCommand} theme activate ${themeName}-theme --path=public`);
+    if (activate) {
+      shelljs.exec(`${wpCli.baseCommand} theme activate ${themeName}-theme --path=public`);
+    }
   });
 
 };

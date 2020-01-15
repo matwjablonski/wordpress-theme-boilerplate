@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --watch",
+    "setup": "yarn clean && node setup.js",
+    "deploy": "yarn setup -- --deploy",
     "wp-cli:download": "yarn clean && node config/wp-cli/core.js",
     "wp-cli:plugins": "node config/wp-cli/plugins.js",
     "clean": "rm -rf public/ wp-cli/",

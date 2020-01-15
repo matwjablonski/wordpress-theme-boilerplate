@@ -18,6 +18,8 @@ const {
   ADMIN_EMAIL
 } = process.env;
 
+const typeOfProcess = process.argv.indexOf('--deploy') ? 'deploy' : 'development';
+
 const settings = {};
 
 settings.theme = {
@@ -32,9 +34,9 @@ settings.theme = {
 };
 
 const init = () => new Promise((resolve, reject) => {
-    resolve(
-        shelljs.exec('curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar')
-    );
+  resolve(
+    shelljs.exec('curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar')
+  );
 });
 
 init()
@@ -48,11 +50,23 @@ init()
     core.config(DB_NAME, DB_USER, DB_PWD, DB_HOST);
   })
   .then(() => {
-    core.db(URL, TITLE, ADMIN_USER, ADMIN_EMAIL);
+    if (typeOfProcess === 'development') {
+      core.db(URL, TITLE, ADMIN_USER, ADMIN_EMAIL);
+    }
   })
   .then(() => {
-    plugins.install();
+    if (typeOfProcess === "deploy") {
+      plugins.install(false);
+    }
+    if (typeOfProcess === 'development') {
+      plugins.install();
+    }
   })
   .then(() => {
-    theme.init(THEME_NAME, settings.theme);
+    if (typeOfProcess === "deploy") {
+      theme.init(THEME_NAME, settings.theme, false);
+    }
+    if (typeOfProcess === 'development') {
+      theme.init(THEME_NAME, settings.theme);
+    }
   });

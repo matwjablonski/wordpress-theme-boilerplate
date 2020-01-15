@@ -10,10 +10,10 @@ const requiredPlugins = [
   {plugin: 'wordpress-importer', name: 'wordpress-importer', activate: true}
 ];
 
-const install = () => {
+const install = (activate = true) => {
   requiredPlugins.forEach(item => {
     shelljs
-      .exec(`${wpCli.baseCommand} plugin is-installed ${item.name} --path=public | ${wpCli.baseCommand} plugin install ${item.plugin} --path=public ${item.activate ? '--activate' : ''}`);
+      .exec(`${wpCli.baseCommand} plugin install ${item.plugin} --path=public ${item.activate && activate ? '--activate' : ''}`);
   });
 };
 
