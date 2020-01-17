@@ -12,7 +12,7 @@ const prepareStyleCSSContent = (settings) => {
 const init = (themeName = 'basic', theme, activate = true) => {
   console.log(`ACTION: Init theme`);
   shelljs.exec(`mkdir -p public/wp-content/themes/${themeName}-theme`);
-  shelljs.exec(`cp -R config/boilerplate/* public/wp-content/themes/${themeName}-theme`);
+  shelljs.exec(`cp -R src/theme/* public/wp-content/themes/${themeName}-theme`);
   fs.writeFile(`public/wp-content/themes/${themeName}-theme/style.css`, prepareStyleCSSContent(theme), (err) => {
     if (err) {
       console.error(err);

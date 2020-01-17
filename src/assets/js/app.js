@@ -1,3 +1,3 @@
 import a from './test';
 
-a.log('hi');
+a.log('hi d d ');
